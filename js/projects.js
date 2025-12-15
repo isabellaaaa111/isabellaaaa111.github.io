@@ -6,7 +6,17 @@
 	 */
 	function init() {
 		let projectBoxes = document.querySelectorAll(".project-box");
-		for (let projectBox of projectBoxes) projectBox.addEventListener("click", openProject);
+		for (let projectBox of projectBoxes) {
+			projectBox.addEventListener("click", function (e) {
+				// If the user clicked the github anchor (or something inside it), let the anchor handle it.
+				if (e.target.closest('.github')) return;
+
+				let githubAnchor = this.querySelector('.github');
+				if (githubAnchor && githubAnchor.href) {
+					window.open(githubAnchor.href, '_blank');
+				}
+			});
+		}
 	}
 
 	/**
